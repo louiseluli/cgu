@@ -123,10 +123,16 @@ to build now.
 
 ## 5. Gaps / new work needed
 
-1. **Narrative writeup** — plain-language findings document for non-technical
-   judges/citizens (the raw pipeline outputs are analyst-facing, not general-public
-   facing), anchored on the invisibility index (§1). This is the single
-   highest-leverage piece of new work.
+1. **Narrative writeup — drafted (19/08).** `submission/narrativa_achados.md`
+   — plain-language (Portuguese) findings document anchored on the four
+   verified numbers in §1: the invisibility index and municipality
+   heterogeneity (Tanguá +52%, Quissamã -40%, named and fact-checked against
+   the source CSV — caught and fixed one rounding error, R$1.126→R$1.125,
+   during review), the education-gap finding (31-34%→54%), the widening
+   trend (Rio de Janeiro +R$1.650, 2014-2024), and the SHAP model with its
+   residual-vs-total-effect caveat. Links to the live dashboard and the EDA
+   audit artifact. Not yet reviewed for tone/length against actual judge
+   expectations — worth a re-read closer to submission.
 2. **Presentation layer — built and tested (18/08).** Correction to the
    original plan: the archived Flask app (`agente_constelacao-archive`) turned
    out to have nothing reusable — every route imports from constelação's own
