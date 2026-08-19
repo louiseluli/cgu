@@ -54,11 +54,12 @@ somando o gap médio de gênero ao gap médio de raça, calculados
 separadamente. Esse número, inédito nesta forma, mostra que a média
 estadual está próxima do previsto pela soma simples (-3,3% em 2024) — mas
 essa média esconde uma variação real e relevante entre municípios: em
-Tanguá, Porto Real e Magé, o gap real chega a ser mais de 50% maior do que a
-soma simples prevê; em outros municípios, ele é sensivelmente menor. Essa
-heterogeneidade municipal é o achado central do projeto e é completamente
-invisível tanto em uma leitura estadual agregada quanto em qualquer análise
-de eixo único (só gênero, ou só raça).
+Tanguá, o gap real chega a ser 52% maior do que a soma simples prevê;
+em Magé, 40% maior; em Porto Real, 10% maior. Em outros municípios — como
+Quissamã, 40% menor —, o efeito vai na direção oposta. Essa heterogeneidade
+municipal é o achado central do projeto e é completamente invisível tanto
+em uma leitura estadual agregada quanto em qualquer análise de eixo único
+(só gênero, ou só raça).
 
 O projeto também treina um modelo XGBoost sobre o painel completo de 2024
 (5.775.860 vínculos formais, R²=0,734 em dados de teste) e usa SHAP para
