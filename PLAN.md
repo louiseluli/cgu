@@ -169,10 +169,25 @@ to build now.
 3. **Admissibility-checklist pass** — re-read Edital articles 4º and 6º in full
    before submitting to confirm no formal requirement is missed (team registration,
    file formats, etc.) — not yet done.
-4. **Reúso registration content** — the Etapa 2 submission on the Portal
-   Dados.Gov "reúso" flow needs its own short description + dataset URL(s); lead
-   with the invisibility index stat, draft the rest from the narrative writeup
-   once it exists.
+4. **Reúso registration content — drafted (18/08).** `submission/reuso_submission_draft.md`
+   — title, short/full description leading with the invisibility index and the
+   Anexo I "Salário médio de empregados" match, dataset URL, and the live
+   reúso URL below.
+5. **Dashboard deployed (18/08).** Live at **https://louiseluli.github.io/cgu/**
+   — GitHub Pages serving `docs/` on `main`, repo `louiseluli/cgu` (public).
+   The Flask app is GET-only with no session state, so it's frozen to static
+   HTML via `src/cgu_reuso/web/freeze.py` (one page per município, 92 total,
+   using Flask's test client — no separate static-site generator needed) rather
+   than run as a live server, which a free host wouldn't sustain reliably
+   through the judging window anyway. The dropdown picker was replaced with a
+   real link list for this — no JS dependency, and arguably a better fit for
+   the Inclusividade criterion's "menor acesso à tecnologia" wording than a
+   JS-driven `<select>` would have been.
+   **Process note:** `cgu` was not previously its own git repository — running
+   git commands inside it resolved to `/Users/louisesfer`, a repo spanning
+   unrelated projects with pending staged changes elsewhere. Initialized an
+   independent nested repo scoped to `cgu/` instead of touching that; verified
+   with `git rev-parse --show-toplevel` before committing anything.
 
 ## 6. Judging-criteria mapping (edital 8.2)
 
@@ -207,7 +222,7 @@ task with its own week.
 |---|---|
 | 18–22/08 | ~~Compute invisibility index~~ done. Draft narrative findings writeup anchored on it (§1) |
 | 22–29/08 | ~~Build dashboard~~ done (Wage Gap Explorer, SHAP panel, story-starter blurbs, downloadable CSVs, accessible markup — §5.2) |
-| 29/08–03/09 | Prepare Etapa 1 form content AND Etapa 2 reúso description together — draft in `docs/reuso_submission_draft.md` (§ below), get Portal Dados.Gov profile created/verified early so nothing blocks the simultaneous submit |
+| 29/08–03/09 | ~~Prepare Etapa 1 form content AND Etapa 2 reúso description~~ done — `submission/reuso_submission_draft.md`, live dashboard at https://louiseluli.github.io/cgu/. Get Portal Dados.Gov profile created/verified early so nothing blocks the simultaneous submit |
 | 03–05/09 | Submit both steps together: fill Etapa 1 form, then immediately register + homologação-send the reúso on the Portal with the dataset URL(s) |
 | 05–11/09 | Buffer: confirm homologação email received, fix any admissibility gaps, re-verify the 2nd edition's actual PDF once reachable (§8) |
 
