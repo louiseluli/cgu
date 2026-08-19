@@ -27,15 +27,13 @@ https://louiseluli.github.io/cgu/
 - **Malha geométrica dos municípios brasileiros** — IBGE.
   https://dados.gov.br/dataset/malha-geometrica-dos-municipios-brasileiros
   (usada nos agrupamentos territoriais — mesorregião/microrregião — presentes
-  em todas as tabelas do painel; satisfaz o critério "Utilização de duas ou
-  mais fontes de dados abertos", item 8.2)
+  em todas as tabelas do painel; satisfaz o item 4.1.4 do edital, "utilização
+  e identificação de dados públicos em formato aberto")
 
 ## Temas
 
-Indicadores econômicos, Indicadores sociais.
-
-Dataset de alto valor agregado específico (Anexo I do edital, tema
-"Indicadores econômicos"): **Salário médio de empregados**.
+Indicadores econômicos (especificamente: salário médio de empregados),
+Indicadores sociais.
 
 ## Descrição curta (para listagem)
 
@@ -80,6 +78,14 @@ completas para download. A série temporal por município funciona como
 ferramenta de monitoramento — permite acompanhar, ano a ano, se o gap local
 está aumentando ou diminuindo, apoiando o controle social sobre políticas
 municipais de equidade salarial.
+
+Todo o código é aberto e está publicado em
+https://github.com/louiseluli/cgu — os scripts de construção do índice de
+invisibilidade e do modelo XGBoost/SHAP, o próprio painel, e a auditoria de
+qualidade de dados. A metodologia foi desenhada para ser replicada em
+qualquer estado brasileiro sem alterações estruturais: o mesmo pipeline que
+processa o Rio de Janeiro processaria os demais 26 estados, bastando
+substituir o recorte geográfico de entrada.
 
 Metodologia documentada com auditoria própria de qualidade de dados,
 verificação cruzada contra tabelas independentes do projeto de origem

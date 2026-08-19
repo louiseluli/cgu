@@ -129,6 +129,8 @@ replicável nacionalmente sem alterações estruturais; a expansão para os 27
 estados é um passo natural de continuidade, não realizado nesta submissão
 por restrição de prazo.
 
+Todo o código é aberto, sob licença MIT, em https://github.com/louiseluli/cgu.
+
 ## Fontes de dados
 
 - RAIS (Relação Anual de Informações Sociais), Ministério do Trabalho e

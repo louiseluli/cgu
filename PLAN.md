@@ -64,14 +64,18 @@ submission. These four verified numbers — not the original unverified "always
 bigger" assumption — should anchor the narrative writeup, the dashboard's
 homepage, and the reúso submission description.
 
-**Themes targeted (per edital):** Indicadores sociais, Indicadores econômicos.
-**Specific high-value dataset match (Anexo I, confirmed 18/08 from the 1st
-edition's edital — see §8):** under tema "Indicadores econômicos," Anexo I
-names "Salário médio de empregados" verbatim as a priority high-value dataset.
-Per item 8.3, the "Foco nas pessoas e impacto para a sociedade" criterion
-(weight 2) is scored *against this named list*, not a general impression — so
-the reúso description and narrative should cite "Salário médio de empregados"
-by name, not just the broader "Indicadores econômicos" theme label.
+**Themes targeted (per landing page):** Indicadores sociais, Indicadores
+econômicos.
+
+**Correction (19/08) — retract the Anexo I claim.** Earlier drafts of this
+plan cited "Salário médio de empregados" as a named Anexo I high-value
+dataset that item 8.3 scores against directly. That was read from the **1st
+edition's** edital PDF. The actual 2026 edital (`EDITAL CGU Nº 46, DE 19 DE
+JUNHO DE 2026`, DOU, pasted in full and read directly — see §6, §8) has no
+Anexo I high-value-dataset table and no item 8.3 tied to one; its item 8.3 is
+just the NC scoring-formula explanation. Retracted from the reúso draft and
+narrative. "Salário médio de empregados" is still a fine plain-language
+description of the dataset, just not a scoring-mechanism citation.
 
 ## 2. Data sources
 
@@ -108,8 +112,8 @@ to build now.
 - `build_trend_outputs.py`, `build_composition_outputs.py` — longitudinal +
   education/age/firm-size composition findings (the "not a low-skill phenomenon"
   story).
-- `train_xgboost.py` + `explain_xgboost.py` — SHAP-based explainability, useful for
-  the "Uso de ferramentas tecnológicas" criterion.
+- `train_xgboost.py` + `explain_xgboost.py` — SHAP-based explainability, feeds
+  "Inovação e originalidade" (§6 — corrected 19/08, not its own criterion).
 - `build_figures.py`, `build_territorial_figures.py` — existing chart set in
   `outputs/figures/intersectional/`, `.../race/`, `.../territorial/`.
 
@@ -186,51 +190,71 @@ to build now.
    using Flask's test client — no separate static-site generator needed) rather
    than run as a live server, which a free host wouldn't sustain reliably
    through the judging window anyway. The dropdown picker was replaced with a
-   real link list for this — no JS dependency, and arguably a better fit for
-   the Inclusividade criterion's "menor acesso à tecnologia" wording than a
-   JS-driven `<select>` would have been.
+   real link list for this — no JS dependency, still good practice even though
+   Inclusividade turned out not to be its own scored criterion (§6, corrected
+   19/08).
    **Process note:** `cgu` was not previously its own git repository — running
    git commands inside it resolved to `/Users/louisesfer`, a repo spanning
    unrelated projects with pending staged changes elsewhere. Initialized an
    independent nested repo scoped to `cgu/` instead of touching that; verified
    with `git rev-parse --show-toplevel` before committing anything.
+6. **LICENSE file — added (19/08).** MIT, at repo root. Item 8.2's
+   "Replicabilidade e escalabilidade" (weight 1, real criterion — §6)
+   explicitly names "códigos abertos e licenças para replicação" as what it
+   scores — the repo URL and license are now cited in both submission
+   documents (§ below).
+7. **Confirm eligibility, item 3.4 — needs your answer.** The 2026 edital bars
+   "servidores em exercício na Controladoria-Geral da União" from
+   participating, individually or as team members. Confirm this doesn't apply.
 
 ## 6. Judging-criteria mapping (edital 8.2)
 
-Descriptions below are the actual 8.2 wording from the 1st edition's edital
-(confirmed 18/08 — see §8 for sourcing/caveat), richer than the landing-page
-summary. Tie-break order on ties (item 8.7) is: transparência > foco nas
-pessoas > inovação > apresentação > inclusividade > fontes > ferramentas —
-i.e. the two criteria this project already leans on hardest are also what
-decides close scores.
+**Rebuilt 19/08 from the actual 2026 edital text** (`EDITAL CGU Nº 46, DE 19
+DE JUNHO DE 2026`, DOU Seção 3, pasted in full by the user and read directly
+— not inferred from the 1st edition or the landing page summary, both of
+which turned out to list a *different* 7-criterion table that doesn't match
+this legally authoritative version). This replaces the previous version of
+this table entirely.
 
-| Critério | Peso | Edital wording | How this project addresses it |
+Tie-break order on ties (item 8.6) is: benefício para a sociedade ou
+economia > relevância e impacto > inovação e originalidade > apresentação e
+usabilidade > replicabilidade e escalabilidade — i.e. the two weight-2
+criteria decide close scores, same shape as before but different names.
+
+| Critério | Peso | Edital wording (verbatim) | How this project addresses it |
 |---|---|---|---|
-| Apresentação | 2 | "Reúsos que priorizem a apresentação dos dados de forma **gráfica e dinâmica**, seguindo os parâmetros de **usabilidade e acessibilidade**." | Dashboard (Wage Gap Explorer, dynamic per-município view) + plain-language narrative anchored on the invisibility index (§1, §5.1–5.2) |
-| Inovação | 2 | "Reúsos que representem ideia, método ou objeto criado de forma **diversa de padrões anteriores**." | Intersectional-not-additive claim proven with a computed number (invisibility index) rather than asserted — a genuinely new method, not just a new chart; SHAP explainability |
-| Fomento à transparência e controle social | 2 | "Reúsos que permitam **acompanhar, monitorar e avaliar políticas públicas** e as ações de Governo... solucionar problemas ou assegurar a manutenção dos serviços de atendimento ao cidadão." | Narrative must frame the per-município trend chart explicitly as a monitoring tool (does a município's gap widen/narrow year over year — i.e. are local equal-pay efforts working), not just a static finding. Story-starter blurbs (targets "reportagens" reuse format) + downloadable derived CSVs that re-feed the open-data ecosystem |
-| Foco nas pessoas e impacto para a sociedade | 2 | Scored against Anexo I high-value datasets (item 8.3) — "Salário médio de empregados" under Indicadores econômicos is a direct, named match (§1). | Cite "Salário médio de empregados" by name, not just "Indicadores econômicos." Explorer makes the impact concrete and personal (pick your município, see your gap) |
-| Uso de 2+ fontes de dados abertos | 1 | "Reúsos de dados construídos a partir de diferentes conjuntos de dados abertos." | RAIS + IBGE (IBGE cataloging still unconfirmed, §8) |
-| Uso de ferramentas tecnológicas | 1 | "Reúsos que realizem utilização, criação e desenvolvimento de tecnologia." | XGBoost/SHAP modeling (R²=0.734 on 5.78M held-out rows, built and wired into the dashboard), interactive dashboard |
-| Inclusividade | 1 | "Reúsos baseados em **solução acessível para diferentes públicos, especialmente aqueles com menor acesso à tecnologia**." | **Correction (18/08):** this criterion is about the *dashboard's* accessibility for low-tech-access users, not primarily about the subject matter being race/sex. Already well-served by the no-JS, server-rendered, semantic-HTML build — but the narrative description should say this explicitly rather than lean on "intersectional lens = inclusividade," which is a weaker match to the actual wording |
+| Relevância e impacto | 2 | "Dimensão e alcance do impacto potencialmente gerado pelo reúso." | Emphasize **scale**, not just depth: statewide coverage (92 municípios, millions of formal workers, 2010-2024), a tool any município or the state itself could use, methodology built to extend to all 27 states without structural changes |
+| Benefício para a sociedade ou economia | 2 | "O reúso contribui para a melhoria de serviços ou políticas públicas, transparência, controle social, acesso a direitos, conhecimento ou inovação, economia digital ou para a geração benefícios à sociedade." | This is now the single criterion that absorbs what used to be two separate ones — lead with it. Per-município trend chart as a *policy-monitoring* tool (is a município's gap widening or narrowing — are local equal-pay efforts working); story-starter blurbs for "reportagens"; downloadable CSVs that re-feed the open-data ecosystem; the core finding itself is a transparency/accountability act |
+| Apresentação e usabilidade | 1 | "O reúso apresenta dados de forma que desperte o interesse do usuário e facilita a compreensão dos dados." | Dashboard (Wage Gap Explorer) + plain-language narrative (§5.1) — same work as before, just now weight 1 not 2 |
+| Inovação e originalidade | 1 | "uso de tecnologia ou conteúdo novo ou experiência original... ou permite ao usuário ter novas perspectivas ou obter novos conhecimentos." | Invisibility index (a genuinely new method, not just a new chart) + XGBoost/SHAP model (R²=0.734) — both fold "technology use" and "new perspective" into one criterion now |
+| Replicabilidade e escalabilidade | 1 | "A iniciativa tem potencial para ser ampliada ou replicada; a iniciativa oferece **códigos abertos e licenças para replicação**." | **New criterion, concrete and checkable** — explicitly rewards open-source code plus an actual license, not just "the idea could scale" in the abstract. The public GitHub repo (`louiseluli/cgu`) is a direct match, but **needs a LICENSE file — doesn't have one yet (action item, §5)**. National-expansion framing (§3) also feeds this directly. |
+
+**Gone as separately-scored criteria vs. the earlier (wrong) table:** "Uso
+de 2+ fontes de dados abertos," "Uso de ferramentas tecnológicas," and
+"Inclusividade" don't exist as their own line items in the real 2026 table.
+The IBGE second-source work (§2) and accessible-markup work (§5.2) are still
+good practice and still generally required by item 4.1.4's "utilização... de
+dados públicos em formato aberto," just not separately weighted — don't
+over-invest narrative space defending them as if they were.
 
 ## 7. Milestone plan (today: 18/08/2026, deadline: 11/09/2026)
 
-**Correction (18/08):** Etapa 1 and Etapa 2 are not sequential with slack
-between them — item 4.1.2 requires the reúso be registered and sent for
-homologação on the Portal *at the moment of* Etapa 1 registration, and the
-2026 landing page independently confirms this ("envie o formulário e avance
-**imediatamente** para a Etapa 2"). Both must be submission-ready
-simultaneously; plan accordingly rather than treating Etapa 2 as a follow-up
-task with its own week.
+**Correction (19/08):** the actual 2026 text (item 4.1.2, item 6.3) requires
+the reúso be sent for homologação "**no período da inscrição**" — during the
+registration window (29/06–11/09/2026) — not literally at the same moment as
+Etapa 1, which is looser than the 1st-edition-based reading this plan had
+until now. Doing both together in one sitting is still the practical default
+(it's simple, and it's what the landing page's own procedural text
+recommends), but there's more schedule flexibility than previously assumed
+if something needs to slip a few days.
 
 | Window | Work |
 |---|---|
 | 18–22/08 | ~~Compute invisibility index~~ done. Draft narrative findings writeup anchored on it (§1) |
 | 22–29/08 | ~~Build dashboard~~ done (Wage Gap Explorer, SHAP panel, story-starter blurbs, downloadable CSVs, accessible markup — §5.2) |
-| 29/08–03/09 | ~~Prepare Etapa 1 form content AND Etapa 2 reúso description~~ done — `submission/reuso_submission_draft.md`, live dashboard at https://louiseluli.github.io/cgu/. Get Portal Dados.Gov profile created/verified early so nothing blocks the simultaneous submit |
-| 03–05/09 | Submit both steps together: fill Etapa 1 form, then immediately register + homologação-send the reúso on the Portal with the dataset URL(s) |
-| 05–11/09 | Buffer: confirm homologação email received, fix any admissibility gaps, re-verify the 2nd edition's actual PDF once reachable (§8) |
+| 29/08–03/09 | ~~Prepare Etapa 1 form content AND Etapa 2 reúso description~~ done — `submission/reuso_submission_draft.md`, live dashboard at https://louiseluli.github.io/cgu/. Add LICENSE file (§5.6). Get Portal Dados.Gov profile created/verified early |
+| 03–05/09 | Submit both steps: fill Etapa 1 form, register + homologação-send the reúso on the Portal with the dataset URL(s) — same sitting, not strictly required to be the same minute |
+| 05–11/09 | Buffer: confirm homologação email received, fix any admissibility gaps |
 
 ### Downstream contest dates (passive — no action needed yet)
 - 25/09/2026 — resultado preliminar da admissibilidade
@@ -241,31 +265,29 @@ task with its own week.
 - 09/12/2026 — resultado final
 - até 30/03/2027 — premiação
 
-## 8. Admissibility checklist (18/08)
+## 8. Admissibility checklist (rebuilt 19/08 — confirmed source)
 
-**Sourcing note:** the 2nd edition's own edital PDF is hosted on
-`in.gov.br`/DOU, which failed to fetch on repeated attempts (connection reset
-— likely blocks automated fetches), and `web.archive.org` is blocked in this
-environment. What follows is read directly from the **1st edition's** edital
-PDF (`EDITAL CGU Nº 21, DE 10 DE ABRIL DE 2025`, gov.br-hosted, successfully
-fetched and read page-by-page). The judging-criteria table matches the 2026
-landing page exactly (same 7 criteria, same weights), and the "advance
-immediately to Etapa 2" instruction is independently confirmed on the 2026
-page too — strong precedent, but item numbers/wording could shift between
-editions. **Before final submission, get the actual 2026 PDF** (try
-downloading it manually via browser from the "Confira aqui o edital" link
-on the landing page, since it renders fine in a browser even though automated
-fetch fails) and diff against this checklist.
+**Sourcing:** `EDITAL CGU Nº 46, DE 19 DE JUNHO DE 2026`, published DOU
+Seção 3, Nº 115, 23/06/2026, digitally signed (verifiable at
+in.gov.br/autenticidade.html, código 05302026062300150) — pasted in full by
+the user and read directly. This is the actual, current, legally
+authoritative text. It supersedes both the earlier admissibility checklist
+(built from the 1st edition as precedent, since automated fetch of this
+document failed repeatedly) and the landing-page criteria summary, which
+turned out not to match this document's item 8.2 (§6).
 
-| # | Requirement (1st-edition wording) | Status for this project |
+| # | Requirement (2026 edital, verbatim where quoted) | Status for this project |
 |---|---|---|
-| 3.4 | Individual citizens without institutional bond may participate | OK — no team required |
-| 3.6 | If submitting as a team, 2–20 people | N/A unless submitting as a team |
-| 4.1.1 | Registration form submitted within the deadline window | Pending — not yet submitted |
-| 4.1.2 | Reúso registered + sent for homologação on the Portal **at the moment of** Etapa 1 registration | **Process risk, now fixed in §7** — do both simultaneously, not sequentially |
-| 4.1.3 | Initiative aligned with transparency/social-control/public-policy/societal-benefit principles | OK, but narrative must explicitly frame the trend data as *policy-monitoring* capability (see §6, Fomento à transparência) — don't leave this implicit |
-| 4.1.4 | Uses open data from a Portal-registered org or that org's own platform, in open format | OK — RAIS/MTE confirmed cataloged (§2) |
-| 4.2 / 15.6 | Off-theme, "viés preconceituoso ou discriminatório," plagiarism, fraud, or non-conforming submissions are disqualified | **Narrative care point, not a real risk**: the project *analyzes and exposes* discrimination — frame it unambiguously as measurement/accountability, not content that could be misread as carrying the bias itself. Low actual risk (Inclusividade is an explicit judged criterion, so equity-focused subject matter is clearly welcomed), but worth one careful sentence in the writeup |
-| 15.8 | Comissão Julgadora / Comitê Gestor members and relatives (to 3rd degree) barred from participating | Confirm no conflict — not expected to apply |
-| 13.7 | Cannot appeal against the 8.2 criteria themselves, only the process | Informational |
-| — | IBGE secondary-source cataloging on dados.gov.br | **Resolved 19/08** — confirmed cataloged (§2), no longer a risk |
+| 3.1 | "pessoas físicas ou jurídicas, de direito público ou privado, nacionais ou estrangeiras" may participate | OK — much broader than the 1st edition's public-sector framing; individual citizens are squarely covered |
+| 3.2 | Individual or team (até 20 participantes); no stated minimum team size | OK — submitting individually |
+| 3.4 | Active CGU staff ("servidores em exercício na Controladoria-Geral da União") barred, individually or as team members | **Needs your confirmation** — not expected to apply, but this is a real disqualifier now stated for individuals specifically, not just judging-committee members as in the 1st edition |
+| 4.1.1 | Registration form submitted within the deadline in the edital's Anexo | Pending — not yet submitted |
+| 4.1.2 / 6.3 | Reúso registered on the Portal and sent for homologação **"no período da inscrição"** (during the registration window, not necessarily simultaneous with Etapa 1) | On track — see relaxed timing in §7 |
+| 4.1.3 | Initiative promotes "acesso a direitos, transparência, controle social, melhoria de serviços ou políticas públicas, conhecimento ou inovação, economia digital ou benefícios à sociedade" | OK — broad, matches "Benefício para a sociedade ou economia" in §6; narrative should still name this explicitly rather than leave it implicit |
+| 4.1.4 | "Utilização e identificação de dados públicos em formato aberto" | OK — RAIS + IBGE, both cited by exact URL (§2) |
+| 4.2 | Initiatives that "promovam preconceito, discriminação, desinformação ou que atentem contra direitos e garantias legais" are barred | **Narrative care point, not a real risk** — the project *analyzes and exposes* discrimination; frame it unambiguously as measurement/accountability. Low actual risk, but worth one careful sentence |
+| 4.3 | Initiatives that won top-3 in the **1st edition** cannot re-enter | N/A — new project, first submission |
+| 6.6 | Same participant/team may submit multiple initiatives if "suficientemente distintas" | N/A — one submission planned |
+| 8.6 / 8.7 | Tie-break order and final tiebreaker (earliest registration date) | Informational — register early within the window if this ever matters |
+| — | IBGE secondary-source cataloging on dados.gov.br | **Resolved 19/08** — confirmed cataloged (§2) |
+| — | LICENSE file for the "Replicabilidade e escalabilidade" criterion | **Open — action item §5.6** |
