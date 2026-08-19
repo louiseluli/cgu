@@ -78,7 +78,7 @@ by name, not just the broader "Indicadores econômicos" theme label.
 | Dataset | Role | Catalogued on dados.gov.br? | Notes |
 |---|---|---|---|
 | RAIS (Relação Anual de Informações Sociais) | Primary | **Yes — verified.** https://dados.gov.br/dataset/relacao-anual-de-informacoes-sociais-rais | Published by Ministério do Trabalho e Emprego (PDET). Satisfies the mandatory "at least one dataset from dados.gov.br" requirement on its own. |
-| IBGE malha municipal / population estimates | Secondary | Not confirmed on dados.gov.br directly (distributed via IBGE's own geoftp/ANDA portals) | Still counts toward "duas ou mais fontes de dados abertos" (weight 1) as public-sector open data; RAIS alone covers the mandatory-catalog requirement. |
+| IBGE malha geométrica dos municípios | Secondary | **Yes — confirmed 19/08.** https://dados.gov.br/dataset/malha-geometrica-dos-municipios-brasileiros | Used for the territorial joins (mesoregion/microregion) throughout wage_gap's outputs. Both sources now cited by exact URL — "duas ou mais fontes" (weight 1) fully satisfied with verifiable links, not just claimed. |
 
 Action item: when filling the Etapa 2 submission form, cite the exact dados.gov.br
 RAIS dataset URL above as the required "conjunto de dados utilizado."
@@ -268,4 +268,4 @@ fetch fails) and diff against this checklist.
 | 4.2 / 15.6 | Off-theme, "viés preconceituoso ou discriminatório," plagiarism, fraud, or non-conforming submissions are disqualified | **Narrative care point, not a real risk**: the project *analyzes and exposes* discrimination — frame it unambiguously as measurement/accountability, not content that could be misread as carrying the bias itself. Low actual risk (Inclusividade is an explicit judged criterion, so equity-focused subject matter is clearly welcomed), but worth one careful sentence in the writeup |
 | 15.8 | Comissão Julgadora / Comitê Gestor members and relatives (to 3rd degree) barred from participating | Confirm no conflict — not expected to apply |
 | 13.7 | Cannot appeal against the 8.2 criteria themselves, only the process | Informational |
-| — | IBGE secondary-source cataloging on dados.gov.br | Still unconfirmed (§2) — low risk since RAIS alone satisfies the mandatory single-dataset requirement, but worth a real check before finalizing the writeup's data-sources section |
+| — | IBGE secondary-source cataloging on dados.gov.br | **Resolved 19/08** — confirmed cataloged (§2), no longer a risk |

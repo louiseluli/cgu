@@ -129,8 +129,12 @@ replicável nacionalmente sem alterações estruturais; a expansão para os 27
 estados é um passo natural de continuidade, não realizado nesta submissão
 por restrição de prazo.
 
-## Fonte de dados
+## Fontes de dados
 
-RAIS (Relação Anual de Informações Sociais), Ministério do Trabalho e
-Emprego, catalogada no Portal Brasileiro de Dados Abertos:
-https://dados.gov.br/dataset/relacao-anual-de-informacoes-sociais-rais
+- RAIS (Relação Anual de Informações Sociais), Ministério do Trabalho e
+  Emprego: https://dados.gov.br/dataset/relacao-anual-de-informacoes-sociais-rais
+- Malha geométrica dos municípios brasileiros, IBGE (usada nos agrupamentos
+  territoriais — mesorregião/microrregião):
+  https://dados.gov.br/dataset/malha-geometrica-dos-municipios-brasileiros
+
+Ambas catalogadas no Portal Brasileiro de Dados Abertos.

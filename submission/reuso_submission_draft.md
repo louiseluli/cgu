@@ -24,6 +24,11 @@ https://louiseluli.github.io/cgu/
   Emprego. https://dados.gov.br/dataset/relacao-anual-de-informacoes-sociais-rais
   (catalogado no Portal Brasileiro de Dados Abertos — satisfaz o requisito
   obrigatório do item 4.1.4)
+- **Malha geométrica dos municípios brasileiros** — IBGE.
+  https://dados.gov.br/dataset/malha-geometrica-dos-municipios-brasileiros
+  (usada nos agrupamentos territoriais — mesorregião/microrregião — presentes
+  em todas as tabelas do painel; satisfaz o critério "Utilização de duas ou
+  mais fontes de dados abertos", item 8.2)
 
 ## Temas
 
