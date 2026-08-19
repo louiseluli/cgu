@@ -1,0 +1,190 @@
+{
+  "first_year": 2010,
+  "latest_year": 2024,
+  "statewide_latest": {
+    "actual_gap": 2622.18,
+    "naive_additive_gap": 2709.8,
+    "invisibility_index": -87.63,
+    "invisibility_pct": -3.3
+  },
+  "statewide_first_year": {
+    "actual_gap": 1057.52,
+    "naive_additive_gap": 1069.25,
+    "invisibility_index": -11.74,
+    "invisibility_pct": -1.1
+  },
+  "municipality_heterogeneity_latest_year": {
+    "n_municipalities_qualified": 81,
+    "min_cell_count_threshold": 100,
+    "invisibility_pct_std": 52.7,
+    "invisibility_pct_p5": -39.0,
+    "invisibility_pct_p95": 39.7,
+    "invisibility_pct_min_raw": -355.0,
+    "invisibility_pct_max_raw": 154.2,
+    "invisibility_pct_min_max_caveat": "min/max can be driven by a near-zero actual_gap denominator rather than a large real effect, even at N>=100 (see EDA section 3.1); prefer p5/p95 or the R$ invisibility_index rankings below."
+  },
+  "top_10_super_additive_municipalities_latest_year": [
+    {
+      "municipality_name": "Tanguá",
+      "count_male_white": 1025.0,
+      "count_female_black": 197.0,
+      "actual_gap": 602.0602144360532,
+      "invisibility_index": 312.3260607261859,
+      "invisibility_pct": 51.87621657058674
+    },
+    {
+      "municipality_name": "Porto Real",
+      "count_male_white": 3082.0,
+      "count_female_black": 327.0,
+      "actual_gap": 2889.8104191844923,
+      "invisibility_index": 293.6184653088021,
+      "invisibility_pct": 10.160475004158286
+    },
+    {
+      "municipality_name": "Magé",
+      "count_male_white": 6186.0,
+      "count_female_black": 1183.0,
+      "actual_gap": 633.7145818606025,
+      "invisibility_index": 251.50538211021126,
+      "invisibility_pct": 39.687485393153636
+    },
+    {
+      "municipality_name": "Miracema",
+      "count_male_white": 1705.0,
+      "count_female_black": 168.0,
+      "actual_gap": 1114.7798374528693,
+      "invisibility_index": 238.35427724283863,
+      "invisibility_pct": 21.38128706987094
+    },
+    {
+      "municipality_name": "Paraíba do Sul",
+      "count_male_white": 2354.0,
+      "count_female_black": 602.0,
+      "actual_gap": 613.6262118765821,
+      "invisibility_index": 196.03365838206537,
+      "invisibility_pct": 31.946754325008097
+    },
+    {
+      "municipality_name": "Porciúncula",
+      "count_male_white": 689.0,
+      "count_female_black": 134.0,
+      "actual_gap": 914.6919263262789,
+      "invisibility_index": 181.49474097009306,
+      "invisibility_pct": 19.842171527526116
+    },
+    {
+      "municipality_name": "Itaboraí",
+      "count_male_white": 10347.0,
+      "count_female_black": 2625.0,
+      "actual_gap": 1675.0917058912867,
+      "invisibility_index": 179.64589933540515,
+      "invisibility_pct": 10.724541152200304
+    },
+    {
+      "municipality_name": "Arraial do Cabo",
+      "count_male_white": 2699.0,
+      "count_female_black": 344.0,
+      "actual_gap": 724.4691077875527,
+      "invisibility_index": 177.98025770918912,
+      "invisibility_pct": 24.56699061368135
+    },
+    {
+      "municipality_name": "Rio Claro",
+      "count_male_white": 949.0,
+      "count_female_black": 165.0,
+      "actual_gap": 826.678959159562,
+      "invisibility_index": 169.64678704806784,
+      "invisibility_pct": 20.52148360235734
+    },
+    {
+      "municipality_name": "São José do Vale do Rio Preto",
+      "count_male_white": 2577.0,
+      "count_female_black": 359.0,
+      "actual_gap": 975.2239164648056,
+      "invisibility_index": 154.17707322190222,
+      "invisibility_pct": 15.809402396610137
+    }
+  ],
+  "top_10_sub_additive_municipalities_latest_year": [
+    {
+      "municipality_name": "São João da Barra",
+      "count_male_white": 8957.0,
+      "count_female_black": 529.0,
+      "actual_gap": 2070.9367090951037,
+      "invisibility_index": -375.37804197774494,
+      "invisibility_pct": -18.126002611724743
+    },
+    {
+      "municipality_name": "Macaé",
+      "count_male_white": 51965.0,
+      "count_female_black": 7458.0,
+      "actual_gap": 6514.089809989948,
+      "invisibility_index": -336.14739872034716,
+      "invisibility_pct": -5.160312622721821
+    },
+    {
+      "municipality_name": "Quissamã",
+      "count_male_white": 1102.0,
+      "count_female_black": 101.0,
+      "actual_gap": 803.6534492641645,
+      "invisibility_index": -321.8359401801122,
+      "invisibility_pct": -40.04660721294599
+    },
+    {
+      "municipality_name": "Sapucaia",
+      "count_male_white": 2042.0,
+      "count_female_black": 262.0,
+      "actual_gap": 190.16454725572157,
+      "invisibility_index": -257.9566053721255,
+      "invisibility_pct": -135.64915705620004
+    },
+    {
+      "municipality_name": "Japeri",
+      "count_male_white": 2184.0,
+      "count_female_black": 1032.0,
+      "actual_gap": 1031.973970525598,
+      "invisibility_index": -184.11411569453958,
+      "invisibility_pct": -17.84096507790481
+    },
+    {
+      "municipality_name": "Quatis",
+      "count_male_white": 678.0,
+      "count_female_black": 223.0,
+      "actual_gap": 160.80977783509934,
+      "invisibility_index": -163.965261258164,
+      "invisibility_pct": -101.96224599371091
+    },
+    {
+      "municipality_name": "Itatiaia",
+      "count_male_white": 3617.0,
+      "count_female_black": 884.0,
+      "actual_gap": 1859.5166786773625,
+      "invisibility_index": -155.78799224605382,
+      "invisibility_pct": -8.377875500254332
+    },
+    {
+      "municipality_name": "Paracambi",
+      "count_male_white": 2377.0,
+      "count_female_black": 366.0,
+      "actual_gap": 809.6669169592012,
+      "invisibility_index": -127.71634356784239,
+      "invisibility_pct": -15.773936280797546
+    },
+    {
+      "municipality_name": "Itaocara",
+      "count_male_white": 1701.0,
+      "count_female_black": 281.0,
+      "actual_gap": 406.55262384906473,
+      "invisibility_index": -121.47814471909123,
+      "invisibility_pct": -29.880054288910646
+    },
+    {
+      "municipality_name": "Pinheiral",
+      "count_male_white": 1303.0,
+      "count_female_black": 482.0,
+      "actual_gap": 452.36892084337796,
+      "invisibility_index": -110.30278279932054,
+      "invisibility_pct": -24.38336890909229
+    }
+  ]
+}

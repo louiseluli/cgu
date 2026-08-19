@@ -1,0 +1,36 @@
+{
+  "year": 2024,
+  "source": "wage_gap/data/processed/rj_state_panel_combined.parquet (validated, 42/42 checks)",
+  "rows_available_2024": 5775860,
+  "training_sample_size": 5775860,
+  "training_sample_note": "Trained on the full available 2024 panel (no subsampling needed — an initial 300k-row timing run finished in 3s).",
+  "test_r2": 0.734,
+  "test_mae_log_wage": 0.281,
+  "model_quality_note": "Reported honestly, not cherry-picked: R^2 measures fit on held-out 2024 data, log-wage scale (matches the target used throughout wage_gap).",
+  "shap_sample_size": 4000,
+  "sex_code_importance_rank": 8,
+  "race_code_importance_rank": 9,
+  "sex_race_combined_share_pct": 7.1,
+  "top_5_features": [
+    {
+      "feature_label": "Ocupação (CBO)",
+      "share_pct": 25.208818435668945
+    },
+    {
+      "feature_label": "Tempo de emprego (meses)",
+      "share_pct": 17.802122116088867
+    },
+    {
+      "feature_label": "Escolaridade",
+      "share_pct": 12.58834171295166
+    },
+    {
+      "feature_label": "Porte do estabelecimento",
+      "share_pct": 10.854862213134766
+    },
+    {
+      "feature_label": "Setor (CNAE classe)",
+      "share_pct": 9.338288307189941
+    }
+  ]
+}

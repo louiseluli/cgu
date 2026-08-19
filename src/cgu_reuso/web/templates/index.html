@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explorador da Desigualdade Salarial Interseccional — RJ</title>
+<link rel="stylesheet" href="{{ base_path }}/static/css/site.css">
+</head>
+<body>
+<div class="shell">
+
+  <header class="hero">
+    <p class="eyebrow">CGU 2º Concurso de Reúso de Dados Abertos &middot; Interseccionalidade Salarial &middot; RAIS 2010&ndash;2024</p>
+    <h1 class="title">Explorador da Desigualdade Salarial</h1>
+    <p class="dek">
+      A diferença salarial entre homens brancos e mulheres negras no Rio de Janeiro não é
+      simplesmente a soma do efeito de gênero com o efeito de raça — em muitos municípios,
+      esse efeito combinado é maior (ou menor) do que uma leitura de eixo único jamais
+      revelaria. Escolha um município para ver o número exato.
+    </p>
+    <div class="trust-strip">
+      <span class="badge"><i class="dot"></i>{{ n_qualified }} de {{ n_total }} municípios com amostra confiável</span>
+      <span class="badge"><i class="dot"></i>última safra: {{ latest_year }}</span>
+      <span class="badge"><i class="dot"></i>gap médio estadual {{ latest_year }}: {{ state_latest.actual_gap|brl }}</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="picker">
+      <h2 class="picker-heading">Escolha um município do Rio de Janeiro</h2>
+      <p class="picker-hint">{{ n_total }} municípios, em ordem alfabética. Use Ctrl+F (ou Cmd+F) para buscar.</p>
+      <ul class="muni-list">
+        {% for m in muni_list %}
+        <li><a href="{{ base_path }}/municipio/{{ m.municipality_code }}/" {% if code_param == m.municipality_code %}aria-current="page" class="current"{% endif %}>{{ m.municipality_name }}</a></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    {% if selected %}
+    <section class="result">
+      <div class="result-head">
+        <p class="back"><a href="{{ base_path }}/">&larr; todos os municípios</a></p>
+        <h2>{{ selected.municipality_name }}, {{ selected.uf_sigla }}</h2>
+        <p class="breadcrumb">{{ selected.mesoregion_name }} &rsaquo; {{ selected.microregion_name }}</p>
+      </div>
+
+      {% if selected.count_male_white < min_cell_count or selected.count_female_black < min_cell_count %}
+      <div class="callout flag">
+        <span class="label">Amostra pequena</span>
+        Este município tem {{ selected.count_female_black|int }} mulheres negras e
+        {{ selected.count_male_white|int }} homens brancos empregados formalmente em
+        {{ selected.year|int }} — abaixo do limiar de {{ min_cell_count }} usado para
+        comparações confiáveis entre municípios. Os números abaixo são reais, mas devem
+        ser lidos com cautela.
+      </div>
+      {% endif %}
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="v mono">{{ selected.actual_gap|brl }}</div>
+          <div class="l">gap real (homem branco &minus; mulher negra), {{ selected.year|int }}</div>
+        </div>
+        <div class="stat">
+          <div class="v mono">{{ selected.naive_additive_gap|brl }}</div>
+          <div class="l">previsto somando gênero + raça separadamente</div>
+        </div>
+        <div class="stat">
+          <div class="v mono {% if selected.invisibility_index >= 0 %}up{% else %}down{% endif %}">
+            {{ selected.invisibility_index|brl(true) }}
+          </div>
+          <div class="l">índice de invisibilidade ({{ "%.1f"|format(selected.invisibility_pct) }}% do gap real)</div>
+        </div>
+      </div>
+
+      <p class="story">{{ story }}</p>
+
+      {% if trend_path %}
+      <h3>Evolução do gap real, 2010&ndash;2024</h3>
+      <svg class="trendchart" viewBox="0 0 520 120" role="img"
+           aria-label="Gap real entre homem branco e mulher negra em {{ selected.municipality_name }}, por ano">
+        <line x1="8" y1="110" x2="512" y2="110" class="axis"></line>
+        <path d="{{ trend_path }}" class="trendline"></path>
+        {% for p in trend_points %}
+        <circle cx="{{ p.x }}" cy="{{ p.y }}" r="2.6" class="trenddot"><title>{{ p.year }}: {{ p.v|brl }}</title></circle>
+        {% endfor %}
+      </svg>
+      <p class="chart-note">Passe o mouse sobre um ponto para ver o ano e o valor. A linha quebra onde faltam anos (2017, 2019&ndash;2020 ausentes na fonte RAIS processada).</p>
+      {% endif %}
+    </section>
+    {% else %}
+    <section class="empty">
+      <p>Nenhum município selecionado ainda. Escolha um acima para ver o gap salarial
+        interseccional local, comparado ao que uma leitura de eixo único preveria.</p>
+    </section>
+    {% endif %}
+
+    {% if shap_importance %}
+    <section class="shap">
+      <h2>O que explica o salário? (modelo XGBoost + SHAP)</h2>
+      <p>
+        Um modelo treinado em {{ "{:,}".format(shap_summary.training_sample_size).replace(",", ".") }}
+        vínculos formais do RJ em 2024 (R²={{ shap_summary.test_r2 }} nos dados de teste) mostra
+        quais características mais influenciam o salário previsto:
+      </p>
+
+      <div class="shap-bars">
+        {% for f in shap_importance %}
+        <div class="shap-row">
+          <span class="shap-label {% if f.feature in ['sex_code','race_code'] %}flagged{% endif %}">{{ f.feature_label }}</span>
+          <div class="shap-track"><div class="shap-fill {% if f.feature in ['sex_code','race_code'] %}flagged{% endif %}" style="width:{{ (f.share_pct / shap_importance[0].share_pct * 100)|round(1) }}%"></div></div>
+          <span class="shap-pct mono">{{ "%.1f"|format(f.share_pct) }}%</span>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="callout flag">
+        <span class="label">Por que sexo (#{{ shap_summary.sex_code_importance_rank }}) e raça
+          (#{{ shap_summary.race_code_importance_rank }}) aparecem por último — e por que isso
+          não contradiz o resto desta página</span>
+        Este modelo prevê o salário <em>dado o cargo, o setor, a escolaridade e o porte da
+        empresa de cada pessoa</em>. Ocupação, setor e porte do estabelecimento — que juntos
+        respondem por mais da metade da importância acima — não são fatores neutros: a
+        segregação ocupacional (quem consegue entrar em quais cargos, setores e empresas) é
+        em si um dos principais mecanismos pelos quais o racismo e o machismo operam no
+        mercado de trabalho. Um modelo condicionado nessas variáveis mede o <strong>gap
+        residual dentro do mesmo cargo</strong>, não o efeito total de sexo e raça — que é
+        exatamente o que o índice de invisibilidade (acima, sem condicionar em cargo) está
+        medindo. As duas análises respondem perguntas diferentes; nenhuma das duas invalida
+        a outra, e nenhuma delas, sozinha, deve ser lida como "a explicação completa" da
+        desigualdade salarial.
+      </div>
+    </section>
+    {% endif %}
+
+    <section class="downloads">
+      <h3>Dados abertos derivados</h3>
+      <p>As tabelas completas por trás deste painel — todos os {{ n_total }} municípios,
+        2010&ndash;2024 — estão disponíveis para reúso:</p>
+      <ul>
+        <li><a href="{{ base_path }}/download/municipality_invisibility_index.csv">municipality_invisibility_index.csv</a> — por município e ano</li>
+        <li><a href="{{ base_path }}/download/statewide_invisibility_index.csv">statewide_invisibility_index.csv</a> — série estadual</li>
+        {% if shap_importance %}
+        <li><a href="{{ base_path }}/download/shap_feature_importance.csv">shap_feature_importance.csv</a> — importância de variáveis (modelo XGBoost)</li>
+        {% endif %}
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Fonte: RAIS (Relação Anual de Informações Sociais), Ministério do Trabalho e Emprego,
+    via <a href="https://dados.gov.br/dataset/relacao-anual-de-informacoes-sociais-rais">dados.gov.br</a>.
+    Metodologia completa e auditoria de qualidade dos dados na documentação do projeto.
+  </footer>
+
+</div>
+</body>
+</html>

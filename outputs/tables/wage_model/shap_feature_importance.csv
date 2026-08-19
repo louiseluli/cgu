@@ -1,0 +1,11 @@
+feature,feature_label,mean_abs_shap,rank,share_pct
+occupation_code,Ocupação (CBO),0.22797005,1,25.208818
+tenure_months,Tempo de emprego (meses),0.16098931,2,17.802122
+education_code,Escolaridade,0.113839716,3,12.588342
+firm_size_code,Porte do estabelecimento,0.098163396,4,10.854862
+sector_class_code,Setor (CNAE classe),0.08444862,5,9.338288
+age,Idade,0.0822844,6,9.098969
+contracted_hours,Carga horária contratada,0.054995522,7,6.0813785
+sex_code,Sexo,0.044992894,8,4.9752927
+race_code,Raça/cor,0.019234544,9,2.1269467
+sector_subclass_code,Setor (CNAE subclasse),0.017408153,10,1.9249853
